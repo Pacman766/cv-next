@@ -28,7 +28,7 @@ export default function RuPage() {
         cvFile={contentRu.profile.cvFile}
       />
       <main>
-        <Hero data={contentRu} />
+        <Hero data={contentRu} lang="ru" />
         <About data={contentRu} />
         <Skills data={contentRu} />
         <Experience data={contentRu} />

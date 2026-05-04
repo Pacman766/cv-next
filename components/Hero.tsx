@@ -4,9 +4,10 @@ import { renderInline } from '@/lib/renderInline';
 
 interface HeroProps {
   data: CVData;
+  lang?: string;
 }
 
-export default function Hero({ data }: HeroProps) {
+export default function Hero({ data, lang }: HeroProps) {
   const { profile, hero, ui } = data;
 
   const initials = profile.name
@@ -17,7 +18,7 @@ export default function Hero({ data }: HeroProps) {
     .toUpperCase();
 
   return (
-    <section className="hero" id="top">
+    <section className={`hero${lang === 'ru' ? ' hero--ru' : ''}`} id="top">
       <div className="hero-inner">
         {/* Availability badge */}
         <div className="hero-meta reveal">
