@@ -171,7 +171,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--bg-2); pad
 /* ============= REVEAL ============= */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-in { opacity: 1; transform: none; }
-.reveal-line { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.reveal-line { display: block; overflow-y: hidden; padding-bottom: 0.08em; }
 .reveal-line > span {
   display: block;
   transform: translateY(110%);
@@ -185,6 +185,7 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--bg-2); pad
 .hero {
   padding: clamp(40px, 8vw, 90px) var(--pad) clamp(60px, 9vw, 120px);
   border-bottom: 1px solid var(--line);
+  overflow-x: clip;
 }
 .hero-inner {
   max-width: var(--max); margin: 0 auto;
@@ -227,6 +228,9 @@ code { font-family: var(--mono); font-size: 0.92em; background: var(--bg-2); pad
   font-weight: 400;
   font-style: italic;
   letter-spacing: -0.02em;
+}
+@media (min-width: 721px) and (max-width: 1100px) {
+  .hero-title { font-size: clamp(38px, 5.5vw, 72px); }
 }
 
 .hero-portrait {
