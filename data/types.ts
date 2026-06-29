@@ -41,6 +41,8 @@ export interface Project {
   lead: string;
   did: string[];
   stack: string[];
+  repo?: string;
+  demo?: string;
 }
 
 export interface EducationItem {
@@ -79,6 +81,8 @@ export interface CVData {
   projects: {
     heading: string;
     items: Project[];
+    sideHeading: string;
+    sideItems: Project[];
   };
   education: EducationItem[];
   languages: Language[];

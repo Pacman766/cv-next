@@ -90,7 +90,7 @@ const content: CVData = {
       },
       {
         title: 'Headless CMS',
-        items: ['Strapi (v4 / v5)', 'Payload'],
+        items: ['Strapi (v4 / v5)', 'Payload', 'StoryBlok-Payload migration'],
       },
       {
         title: 'Tools & environment',
@@ -154,7 +154,7 @@ const content: CVData = {
         title: 'Scan Session',
         when: 'Jan 2025 — Mar 2025',
         role: 'Middle Web Developer',
-        lead: 'A Chrome-like document scanning module with zoom, rotation, fit-to-height/width, and page deletion. Synchronized scrolling and selection between sidebar and main viewer via Intersection Observer; integrated with both a Chrome extension and a desktop app for real-time editing.',
+        lead: 'A Chrome-like document scanning module with zoom, rotation, fit-to-height/width, and page deletion. Synchronized scrolling and selection between sidebar and main viewer via Intersection Observer. A Chrome extension paired with a companion desktop app bridged the web session to the scanner hardware — a browser can\'t access devices directly, so commands flowed through the extension into the desktop app and scanned pages streamed back into the session in real time.',
         did: [
           'Designed the full scanning workflow with persistent state via React Hooks & Context API.',
           'Built advanced manipulation (zoom, rotate, delete, fit) with optimized re-renders via `React.memo` and `useCallback`.',
@@ -167,7 +167,7 @@ const content: CVData = {
       },
       {
         title: 'Advanced Search Session — EDMS',
-        when: 'Mar 2024 — May 2024',
+        when: 'Apr 2024 — May 2024',
         role: 'Middle Web Developer',
         lead: 'A comprehensive search inside the EDMS that lets users build fully customized queries on flexible criteria. Each field is generated dynamically based on document class, user role, access permissions, and search-form context (resolution issuance, mailing, archiving, etc.). Users construct SQL-like queries with _contains / starts with / does not include / and / or / except_, save and load templates, merge results, and navigate search history.',
         did: [
@@ -192,6 +192,39 @@ const content: CVData = {
           'Link movement and deletion within sessions for better organization.',
         ],
         stack: ['JavaScript', 'Vue.js', 'Java', 'REST API'],
+      },
+    ],
+    sideHeading: 'Side projects, built on my own time.',
+    sideItems: [
+      {
+        title: 'Storyblok to Payload Migration',
+        when: '2026',
+        role: 'Personal project',
+        lead: 'A Turborepo monorepo demonstrating a full headless-CMS migration from Storyblok to Payload CMS v3. A Node script maps Storyblok content models and entries onto typed Payload collections, while a Next.js 16 frontend keeps the Storyblok Visual Editor and webhook-driven ISR. Architectural decisions are recorded as ADRs.',
+        did: [
+          'Built a migration script mapping Storyblok models to typed Payload collections — Lexical rich text, media, and relations.',
+          'Structured as a Turborepo monorepo (web / cms / migration) with npm workspaces.',
+          'Next.js 16 App Router frontend with Storyblok Visual Editor and webhook-based ISR revalidation.',
+          'Documented key trade-offs as ADRs.',
+        ],
+        stack: ['Next.js 16', 'TypeScript', 'Payload CMS v3', 'Storyblok', 'PostgreSQL', 'Turborepo', 'Node.js'],
+        repo: 'https://github.com/Pacman766/storyblok-payload-migration',
+        demo: 'https://storyblok-payload-migration.vercel.app',
+      },
+      {
+        title: 'Chainline',
+        when: '2026',
+        role: 'Personal project',
+        lead: 'An end-to-end Next.js 15 + Payload CMS v3 application exploring production headless-commerce patterns: typed collections with access control, a Lexical editor with custom blocks, a Stripe payment flow, and a full automated test suite — all dockerized for local development.',
+        did: [
+          'Custom Payload collections with typed access-control rules and a Lexical editor with custom block types.',
+          'Stripe payment flow with Vercel Blob storage and Resend transactional email.',
+          'Full coverage: Vitest integration tests + Playwright E2E.',
+          'Dockerized local environment via docker-compose.',
+        ],
+        stack: ['Next.js 15', 'React 19', 'TypeScript', 'Payload CMS v3', 'Stripe', 'PostgreSQL', 'Tailwind', 'Playwright', 'Vitest', 'Docker'],
+        repo: 'https://github.com/Pacman766/chainline',
+        demo: 'https://payload-start-seven.vercel.app',
       },
     ],
   },
@@ -248,7 +281,7 @@ const content: CVData = {
       printBtnShort: 'Save as PDF',
     },
     footer: {
-      footerCredit: 'Crafted with care · Last updated April 2026',
+      footerCredit: 'Crafted with care · Last updated June 2026',
     },
   },
 };

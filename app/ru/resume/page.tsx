@@ -166,7 +166,70 @@ export default function ResumeRuPage() {
 
           <div className="r-foot">
             <span>{profile.name}</span>
-            <span>Стр. 1</span>
+            <span>Стр. 1 из 2</span>
+          </div>
+        </article>
+
+        <article className="r-page r-page-2">
+          <header className="r-head r-head-slim">
+            <div className="r-head-left">
+              <h1>{profile.name}</h1>
+              <div
+                className="r-head-tag"
+                dangerouslySetInnerHTML={{
+                  __html: `${profile.role} · <strong>Пет-проекты</strong>`,
+                }}
+              />
+            </div>
+            <div className="r-head-right">
+              <span className="r-when">
+                Обновлено {new Date().toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}
+              </span>
+              <span>{profile.location}</span>
+            </div>
+          </header>
+
+          <main className="r-col-right">
+            <section>
+              <h2 className="r-h2">Пет-проекты</h2>
+              {projects.sideItems.map((project, i) => (
+                <div key={i} className="r-project">
+                  <div className="r-project-head">
+                    <span className="r-project-title">{project.title}</span>
+                    <span className="r-project-when">{project.when}</span>
+                  </div>
+                  <p
+                    className="r-project-lead"
+                    dangerouslySetInnerHTML={{ __html: renderInline(project.lead) }}
+                  />
+                  <div className="r-project-stack">
+                    {project.stack.map((s, j) => (
+                      <span key={j}>{s}</span>
+                    ))}
+                  </div>
+                  {(project.repo || project.demo) && (
+                    <div className="r-project-links">
+                      {project.repo && (
+                        <a href={project.repo} target="_blank" rel="noopener noreferrer">
+                          GitHub
+                        </a>
+                      )}
+                      {project.repo && project.demo && <span className="r-link-sep">·</span>}
+                      {project.demo && (
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                          Demo
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </section>
+          </main>
+
+          <div className="r-foot">
+            <span>{profile.name}</span>
+            <span>Стр. 2 из 2</span>
           </div>
         </article>
       </div>
@@ -302,6 +365,13 @@ body { background: #e8e4dc !important; }
 .r-project-stack span { font-family: var(--r-mono); font-size: 7.5pt; padding: 2px 7px; border: 1px solid var(--r-line); border-radius: 4px; color: var(--r-ink-2); }
 .r-foot { margin-top: 16px; padding-top: 8px; border-top: 1px solid var(--r-line); display: flex; justify-content: space-between; font-family: var(--r-mono); font-size: 7.5pt; color: var(--r-ink-3); letter-spacing: 0.06em; text-transform: uppercase; }
 
+.r-head-slim { margin-bottom: 14px; }
+.r-head-slim h1 { font-size: 24pt; }
+.r-project-links { margin-top: 5px; font-family: var(--r-mono); font-size: 8pt; letter-spacing: 0.04em; }
+.r-project-links a { color: var(--r-accent); text-decoration: none; font-weight: 500; }
+.r-project-links a:hover { text-decoration: underline; }
+.r-link-sep { color: var(--r-ink-3); margin: 0 6px; }
+
 .btn-short { display: none; }
 @media (max-width: 600px) {
   .btn-long { display: none; }
@@ -320,6 +390,7 @@ body { background: #e8e4dc !important; }
   .r-head { page-break-after: avoid; break-after: avoid; }
   .r-h2 { page-break-after: avoid; break-after: avoid; }
   .r-role, .r-project, .r-skills-block, .r-edu-list li { page-break-inside: avoid; break-inside: avoid; }
+  .r-page-2 { page-break-before: always; break-before: page; }
   .r-foot { display: none; }
   body { font-size: 10pt; }
   .r-head-left h1 { font-size: 28pt; }
