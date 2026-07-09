@@ -80,30 +80,6 @@ export default function ResumeRuPage() {
                 ))}
               </section>
 
-              <section>
-                <h2 className="r-h2">Языки</h2>
-                <ul className="r-lang-list">
-                  {languages.map((lang, i) => (
-                    <li key={i}>
-                      <span className="r-lang-name">{lang.name}</span>
-                      <span className="r-lang-level">{lang.level}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <section>
-                <h2 className="r-h2">Образование</h2>
-                <ul className="r-edu-list">
-                  {education.map((item, i) => (
-                    <li key={i}>
-                      <span className="r-edu-school">{item.name}</span>
-                      <span className="r-edu-degree">{item.degree}</span>
-                      <span className="r-edu-when">{item.when}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
             </aside>
 
             <main className="r-col-right">
@@ -140,27 +116,6 @@ export default function ResumeRuPage() {
                   </div>
                 ))}
               </section>
-
-              <section>
-                <h2 className="r-h2">Проекты</h2>
-                {projects.items.map((project, i) => (
-                  <div key={i} className="r-project">
-                    <div className="r-project-head">
-                      <span className="r-project-title">{project.title}</span>
-                      <span className="r-project-when">{project.when}</span>
-                    </div>
-                    <p
-                      className="r-project-lead"
-                      dangerouslySetInnerHTML={{ __html: renderInline(project.lead) }}
-                    />
-                    <div className="r-project-stack">
-                      {project.stack.map((s, j) => (
-                        <span key={j}>{s}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </section>
             </main>
           </div>
 
@@ -177,7 +132,7 @@ export default function ResumeRuPage() {
               <div
                 className="r-head-tag"
                 dangerouslySetInnerHTML={{
-                  __html: `${profile.role} · <strong>Пет-проекты</strong>`,
+                  __html: `${profile.role} · <strong>Проекты и бэкграунд</strong>`,
                 }}
               />
             </div>
@@ -189,9 +144,59 @@ export default function ResumeRuPage() {
             </div>
           </header>
 
-          <main className="r-col-right">
+          <div className="r-meta-row">
             <section>
-              <h2 className="r-h2">Пет-проекты</h2>
+              <h2 className="r-h2">Языки</h2>
+              <ul className="r-lang-list">
+                {languages.map((lang, i) => (
+                  <li key={i}>
+                    <span className="r-lang-name">{lang.name}</span>
+                    <span className="r-lang-level">{lang.level}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="r-h2">Образование</h2>
+              <ul className="r-edu-list">
+                {education.map((item, i) => (
+                  <li key={i}>
+                    <span className="r-edu-school">{item.name}</span>
+                    <span className="r-edu-degree">{item.degree}</span>
+                    <span className="r-edu-when">{item.when}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+
+          <section>
+            <h2 className="r-h2">Проекты</h2>
+            <div className="r-proj-cols">
+              {projects.items.map((project, i) => (
+                <div key={i} className="r-project">
+                  <div className="r-project-head">
+                    <span className="r-project-title">{project.title}</span>
+                    <span className="r-project-when">{project.when}</span>
+                  </div>
+                  <p
+                    className="r-project-lead"
+                    dangerouslySetInnerHTML={{ __html: renderInline(project.lead) }}
+                  />
+                  <div className="r-project-stack">
+                    {project.stack.map((s, j) => (
+                      <span key={j}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h2 className="r-h2">Пет-проекты</h2>
+            <div className="r-proj-cols">
               {projects.sideItems.map((project, i) => (
                 <div key={i} className="r-project">
                   <div className="r-project-head">
@@ -224,8 +229,8 @@ export default function ResumeRuPage() {
                   )}
                 </div>
               ))}
-            </section>
-          </main>
+            </div>
+          </section>
 
           <div className="r-foot">
             <span>{profile.name}</span>
@@ -250,7 +255,7 @@ const resumeStyles = `
   --r-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --r-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 }
-body { background: #e8e4dc !important; }
+body { background: #ffffff !important; }
 
 .r-toolbar {
   position: sticky; top: 0; z-index: 20;
@@ -367,6 +372,10 @@ body { background: #e8e4dc !important; }
 
 .r-head-slim { margin-bottom: 14px; }
 .r-head-slim h1 { font-size: 24pt; }
+.r-meta-row { display: flex; gap: 12mm; margin-bottom: 14px; }
+.r-meta-row > section { flex: 1; margin-bottom: 0; }
+.r-proj-cols { column-count: 2; column-gap: 8mm; }
+.r-proj-cols > .r-project { break-inside: avoid; -webkit-column-break-inside: avoid; }
 .r-project-links { margin-top: 5px; font-family: var(--r-mono); font-size: 8pt; letter-spacing: 0.04em; }
 .r-project-links a { color: var(--r-accent); text-decoration: none; font-weight: 500; }
 .r-project-links a:hover { text-decoration: underline; }
@@ -381,19 +390,25 @@ body { background: #e8e4dc !important; }
   .r-page-wrap { overflow-x: hidden; max-width: 100vw; padding: 16px 0 32px; }
 }
 
-@page { size: A4; margin: 12mm 14mm; }
+@page { size: A4; margin: 10mm 14mm; }
 @media print {
   html, body { background: white !important; }
   .r-toolbar { display: none !important; }
   .r-page-wrap { padding: 0; gap: 0; display: block; }
   .r-page { box-shadow: none; margin: 0; padding: 0; width: auto; min-height: 0; page-break-after: auto; }
-  .r-head { page-break-after: avoid; break-after: avoid; }
-  .r-h2 { page-break-after: avoid; break-after: avoid; }
+  .r-head { page-break-after: avoid; break-after: avoid; margin-bottom: 12px; padding-bottom: 10px; }
+  .r-h2 { page-break-after: avoid; break-after: avoid; margin-bottom: 6px; padding-bottom: 3px; }
   .r-role, .r-project, .r-skills-block, .r-edu-list li { page-break-inside: avoid; break-inside: avoid; }
   .r-page-2 { page-break-before: always; break-before: page; }
   .r-foot { display: none; }
   body { font-size: 10pt; }
   .r-head-left h1 { font-size: 28pt; }
   .r-grid { gap: 10mm; }
+  .r-col-left > section, .r-col-right > section { margin-bottom: 10px; }
+  .r-skills-block { margin-bottom: 5px; }
+  .r-role { margin-bottom: 9px; }
+  .r-project { margin-bottom: 4px; }
+  .r-project-lead { margin-bottom: 3px; }
+  .r-project-stack { margin-top: 3px; }
 }
 `;
